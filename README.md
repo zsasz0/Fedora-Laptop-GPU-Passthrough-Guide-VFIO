@@ -17,6 +17,8 @@ GPU passthrough on **Fedora laptops** using KVM, QEMU, and VFIO.
 
 ## Start
  [Requirements](docs/01-requirements.md)
+##configure GRUB, enable IOMMU, and Bind the dedicated GPU to vfio-pci and verify isolation .
+ [Requirements](docs/vfio-setup.md)
 
 ## Who This Is For
 - Fedora users
