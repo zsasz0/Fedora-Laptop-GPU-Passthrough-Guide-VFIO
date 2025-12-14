@@ -116,16 +116,22 @@ Example:
 Bind GPU to VFIO
 $ sudo nano /etc/modprobe.d/vfio-pci.conf
 
+add:
+
 options vfio-pci ids=10de:25a2,10de:2291
 
 Load VFIO Before NVIDIA Drivers
 $ sudo nano /etc/modprobe.d/nvidia-vfio-softdep.conf
+
+add:
 
 softdep nvidia pre: vfio-pci
 softdep nvidia_drm pre: vfio-pci
 
 Add VFIO Drivers to Initramfs
 $ sudo nano /etc/dracut.conf.d/vfio.conf
+
+add:
 
 add_drivers+=" vfio vfio_iommu_type1 vfio_pci "
 
