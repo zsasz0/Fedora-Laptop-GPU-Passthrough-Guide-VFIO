@@ -1,26 +1,12 @@
-# Fedora Laptop GPU Passthrough (VFIO)
-
-This repository contains a **complete, tested guide** for setting up
-GPU passthrough on **Fedora laptops** using KVM, QEMU, and VFIO.
-
->  Laptop GPU passthrough is more complex than desktop setups.
-> Read carefully and **back up your data**.
-
-## What This Guide Covers
-- Fedora host setup
-- Laptop-specific VFIO issues
-- IOMMU & GPU isolation
-- libvirt + virt-manager
-- Windows VM (UEFI)
-- Looking Glass
-- Troubleshooting
-
-## Start
- [Requirements](docs/01-requirements.md)
-## configure GRUB, enable IOMMU, and Bind the dedicated GPU to vfio-pci and verify isolation .
- [vfio-setup](docs/vfio-setup.md)
-
-## Who This Is For
-- Fedora users
-- Gaming / GPU compute in VMs
-- Laptop owners with iGPU + dGPU
+<h2>
+  Table of Contents
+</h2>
+* [Introduction](#introduction)
+* [Hardware Requirements](#hardware-requirements)
+* [Tutorial](#tutorial)
+  * [Part 1: Prerequisites](#part-1-prerequisites)
+  * [Part 2: VM Logistics](#part-2-vm-logistics)
+  * [Part 3: Creating the VM](#part-3-creating-the-vm)
+  * [Part 4: Improving VM Performance](#part-4-improving-vm-performance)
+  * [Part 5: Benchmarks](#part-5-benchmarks)
+  * [Part 6: Software Licensing Considerations](#part-6-software-licensing-considerations)
