@@ -96,17 +96,18 @@ $ sudo reboot
 ```
 
 Verify IOMMU:
-
+```bash
 $ dmesg | grep -i iommu
-
+```
 
 Expected:
 
 IOMMU enabled
 
 Identify GPU PCI IDs
+```bash
 $ lspci -nn
-
+```
 
 Example:
 
@@ -114,50 +115,59 @@ Example:
 01:00.1 Audio device [0403]: NVIDIA Corporation GA107 Audio Controller [10de:2291]
 
 Bind GPU to VFIO
+```bash
 $ sudo nano /etc/modprobe.d/vfio-pci.conf
-
+```
 add:
 
 options vfio-pci ids=10de:25a2,10de:2291
 
 Load VFIO Before NVIDIA Drivers
+```bash
 $ sudo nano /etc/modprobe.d/nvidia-vfio-softdep.conf
-
+```
 add:
 
 softdep nvidia pre: vfio-pci
 softdep nvidia_drm pre: vfio-pci
 
 Add VFIO Drivers to Initramfs
+```bash
 $ sudo nano /etc/dracut.conf.d/vfio.conf
-
+```
 add:
 
 add_drivers+=" vfio vfio_iommu_type1 vfio_pci "
 
 
 Rebuild initramfs:
-
+```bash
 $ sudo dracut -f
 $ sudo reboot
+```
 
 Verify VFIO Binding
+```bash
 $ lspci -nnk | grep -A3 -E "VGA|Audio"
-
+```
 
 Expected:
 
 Kernel driver in use: vfio-pci
 
-<h3 id="part-3-virtualization-setup-libvirt--kvm"> Part 3: Virtualization Setup (libvirt & KVM) </h3>
+<h3 id="part-3-virtualization-setup-libvirt--kvm"> 
+  Part 3: Virtualization Setup (libvirt & KVM)
+</h3>
 Install Virtualization Stack
+```bash
 $ sudo dnf update -y
 $ sudo dnf install -y @virtualization
-
+```
 Enable & Start libvirtd
+```bash
 $ sudo systemctl enable --now libvirtd
 $ sudo systemctl status libvirtd
-
+```
 Add User to Required Groups (CRITICAL)
 $ sudo usermod -aG libvirt,kvm,input,disk $(whoami)
 $ newgrp libvirt
